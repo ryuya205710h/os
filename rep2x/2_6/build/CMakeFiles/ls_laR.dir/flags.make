@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = 
 
-C_FLAGS = -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+C_FLAGS = -g -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 

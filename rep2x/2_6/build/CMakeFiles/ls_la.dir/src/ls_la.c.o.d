@@ -1,4 +1,5 @@
-CMakeFiles/ls_la.dir/src/ls_la.c.o: /Users/205710h/os/rep2/src/ls_la.c \
+CMakeFiles/ls_la.dir/src/ls_la.c.o: \
+  /Users/205710h/os/2023/rep2x/2_6/src/ls_la.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \

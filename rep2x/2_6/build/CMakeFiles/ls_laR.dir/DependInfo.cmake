@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/205710h/os/rep2/src/ls_laR.c" "CMakeFiles/ls_laR.dir/src/ls_laR.c.o" "gcc" "CMakeFiles/ls_laR.dir/src/ls_laR.c.o.d"
+  "/Users/205710h/os/2023/rep2x/2_6/src/ls_laR.c" "CMakeFiles/ls_laR.dir/src/ls_laR.c.o" "gcc" "CMakeFiles/ls_laR.dir/src/ls_laR.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
