@@ -1,0 +1,3 @@
+/Users/205710h/os/2023/rep2x/2_6/ls-laR/build/CMakeFiles/ls_laR.dir
+/Users/205710h/os/2023/rep2x/2_6/ls-laR/build/CMakeFiles/edit_cache.dir
+/Users/205710h/os/2023/rep2x/2_6/ls-laR/build/CMakeFiles/rebuild_cache.dir
