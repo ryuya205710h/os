@@ -1,3 +1,4 @@
+//多様な値は得られてないため、グラフにはしていない
 (gdb) break 24
 Breakpoint 1 at 0x143e: file main.c, line 24.
 (gdb) run 1
