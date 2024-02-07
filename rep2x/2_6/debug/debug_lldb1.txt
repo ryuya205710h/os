@@ -1,0 +1,25 @@
+205710h $ docker compose exec c_env bash
+root@d58158090ce4:/workplace# ls
+Dockerfile  ls-laR
+root@d58158090ce4:/workplace# cd ls-laR
+root@d58158090ce4:/workplace/ls-laR# gcc -o ls_laR -O0 -g main.c
+main.c: In function 'print_directory_contents':
+main.c:60:17: warning: format '%hu' expects argument of type 'int', but argument 2 has type '__nlink_t' {aka 'long unsigned int'} [-Wformat=]
+   60 |     printf(" %3hu", statbuf.st_nlink);
+      |              ~~~^   ~~~~~~~~~~~~~~~~
+      |                 |          |
+      |                 int        __nlink_t {aka long unsigned int}
+      |              %3lu
+main.c:67:18: warning: format '%lld' expects argument of type 'long long int', but argument 2 has type '__off_t' {aka 'long int'} [-Wformat=]
+   67 |     printf(" %9lld", statbuf.st_size);
+      |              ~~~~^   ~~~~~~~~~~~~~~~
+      |                  |          |
+      |                  |          __off_t {aka long int}
+      |                  long long int
+      |              %9ld
+root@d58158090ce4:/workplace/ls-laR# lldb ./ls_laR
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'lldb.embedded_interpreter'
+(lldb) target create "./ls_laR"
+Current executable set to '/workplace/ls-laR/ls_laR' (x86_64).

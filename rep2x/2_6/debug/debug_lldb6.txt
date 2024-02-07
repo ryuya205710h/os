@@ -1,0 +1,113 @@
+(lldb) run
+There is a running process, kill it and restart?: [Y/n] n
+(lldb) disassemble
+libc.so.6`_IO_new_file_write:
+    0x7ffff7e18ec0 <+0>:   endbr64 
+    0x7ffff7e18ec4 <+4>:   pushq  %r13
+    0x7ffff7e18ec6 <+6>:   movq   %rdi, %r13
+    0x7ffff7e18ec9 <+9>:   pushq  %r12
+    0x7ffff7e18ecb <+11>:  pushq  %rbp
+    0x7ffff7e18ecc <+12>:  pushq  %rbx
+    0x7ffff7e18ecd <+13>:  subq   $0x8, %rsp
+    0x7ffff7e18ed1 <+17>:  testq  %rdx, %rdx
+    0x7ffff7e18ed4 <+20>:  jle    0x7ffff7e18f58            ; <+152> at fileops.c:1175:16
+    0x7ffff7e18eda <+26>:  movq   %rsi, %rbp
+    0x7ffff7e18edd <+29>:  movq   %rdx, %r12
+    0x7ffff7e18ee0 <+32>:  movq   %rdx, %rbx
+    0x7ffff7e18ee3 <+35>:  jmp    0x7ffff7e18efd            ; <+61> at fileops.c:1179:9
+    0x7ffff7e18ee5 <+37>:  nopl   (%rax)
+    0x7ffff7e18ee8 <+40>:  callq  0x7ffff7ea2870            ; __GI___libc_write at write.c:25:1
+->  0x7ffff7e18eed <+45>:  testq  %rax, %rax
+    0x7ffff7e18ef0 <+48>:  js     0x7ffff7e18f20            ; <+96> at fileops.c:1183:14
+    0x7ffff7e18ef2 <+50>:  subq   %rax, %rbx
+    0x7ffff7e18ef5 <+53>:  addq   %rax, %rbp
+    0x7ffff7e18ef8 <+56>:  testq  %rbx, %rbx
+    0x7ffff7e18efb <+59>:  jle    0x7ffff7e18f50            ; <+144> at fileops.c:1189:5
+    0x7ffff7e18efd <+61>:  movl   0x70(%r13), %edi
+    0x7ffff7e18f01 <+65>:  movq   %rbx, %rdx
+    0x7ffff7e18f04 <+68>:  movq   %rbp, %rsi
+    0x7ffff7e18f07 <+71>:  testb  $0x2, 0x74(%r13)
+    0x7ffff7e18f0c <+76>:  je     0x7ffff7e18ee8            ; <+40> at fileops.c:1180:9
+    0x7ffff7e18f0e <+78>:  callq  0x7ffff7ea7b90            ; __GI___write_nocancel at write_nocancel.c:25:1
+    0x7ffff7e18f13 <+83>:  testq  %rax, %rax
+    0x7ffff7e18f16 <+86>:  jns    0x7ffff7e18ef2            ; <+50> at fileops.c:1186:13
+    0x7ffff7e18f18 <+88>:  nopl   (%rax,%rax)
+    0x7ffff7e18f20 <+96>:  orl    $0x20, (%r13)
+    0x7ffff7e18f25 <+101>: movq   %r12, %rax
+    0x7ffff7e18f28 <+104>: subq   %rbx, %rax
+    0x7ffff7e18f2b <+107>: movq   0x90(%r13), %rdx
+    0x7ffff7e18f32 <+114>: testq  %rdx, %rdx
+    0x7ffff7e18f35 <+117>: js     0x7ffff7e18f41            ; <+129> at fileops.c:1193:1
+    0x7ffff7e18f37 <+119>: addq   %rax, %rdx
+    0x7ffff7e18f3a <+122>: movq   %rdx, 0x90(%r13)
+    0x7ffff7e18f41 <+129>: addq   $0x8, %rsp
+    0x7ffff7e18f45 <+133>: popq   %rbx
+    0x7ffff7e18f46 <+134>: popq   %rbp
+    0x7ffff7e18f47 <+135>: popq   %r12
+    0x7ffff7e18f49 <+137>: popq   %r13
+    0x7ffff7e18f4b <+139>: retq   
+    0x7ffff7e18f4c <+140>: nopl   (%rax)
+    0x7ffff7e18f50 <+144>: movq   %r12, %rax
+    0x7ffff7e18f53 <+147>: subq   %rbx, %rax
+    0x7ffff7e18f56 <+150>: jmp    0x7ffff7e18f2b            ; <+107> at fileops.c:1190:8
+    0x7ffff7e18f58 <+152>: xorl   %eax, %eax
+    0x7ffff7e18f5a <+154>: jmp    0x7ffff7e18f2b            ; <+107> at fileops.c:1190:8
+(lldb) stepi
+Process 29 stopped
+* thread #1, name = 'ls_laR', stop reason = instruction step into
+    frame #0: 0x00007ffff7ea2874 libc.so.6`__GI___libc_write(fd=1, buf=0x0000555555561340, nbytes=3) at write.c:26:10
+(lldb) stepi
+Process 29 stopped
+* thread #1, name = 'ls_laR', stop reason = instruction step into
+    frame #0: 0x00007ffff7ea287c libc.so.6`__GI___libc_write(fd=1, buf=0x0000555555561340, nbytes=3) at write.c:26:10
+(lldb) stepi
+Process 29 stopped
+* thread #1, name = 'ls_laR', stop reason = instruction step into
+    frame #0: 0x00007ffff7ea287e libc.so.6`__GI___libc_write(fd=1, buf=0x0000555555561340, nbytes=3) at write.c:26:10
+(lldb) stepi
+Process 29 stopped
+* thread #1, name = 'ls_laR', stop reason = instruction step into
+    frame #0: 0x00007ffff7ea2880 libc.so.6`__GI___libc_write(fd=1, buf=0x0000555555561340, nbytes=3) at write.c:26:10
+(lldb) disassemble
+libc.so.6`:
+    0x7ffff7ea2870 <+0>:   endbr64 
+    0x7ffff7ea2874 <+4>:   movl   %fs:0x18, %eax
+    0x7ffff7ea287c <+12>:  testl  %eax, %eax
+    0x7ffff7ea287e <+14>:  jne    0x7ffff7ea2890            ; <+32> at write.c:25:1
+->  0x7ffff7ea2880 <+16>:  movl   $0x1, %eax
+    0x7ffff7ea2885 <+21>:  syscall 
+    0x7ffff7ea2887 <+23>:  cmpq   $-0x1000, %rax            ; imm = 0xF000 
+    0x7ffff7ea288d <+29>:  ja     0x7ffff7ea28e0            ; <+112> at write.c:26:10
+    0x7ffff7ea288f <+31>:  retq   
+    0x7ffff7ea2890 <+32>:  subq   $0x28, %rsp
+    0x7ffff7ea2894 <+36>:  movq   %rdx, 0x18(%rsp)
+    0x7ffff7ea2899 <+41>:  movq   %rsi, 0x10(%rsp)
+    0x7ffff7ea289e <+46>:  movl   %edi, 0x8(%rsp)
+    0x7ffff7ea28a2 <+50>:  callq  0x7ffff7e1e9f0            ; __GI___pthread_enable_asynccancel at cancellation.c:31:1
+    0x7ffff7ea28a7 <+55>:  movq   0x18(%rsp), %rdx
+    0x7ffff7ea28ac <+60>:  movq   0x10(%rsp), %rsi
+    0x7ffff7ea28b1 <+65>:  movl   %eax, %r8d
+    0x7ffff7ea28b4 <+68>:  movl   0x8(%rsp), %edi
+    0x7ffff7ea28b8 <+72>:  movl   $0x1, %eax
+    0x7ffff7ea28bd <+77>:  syscall 
+    0x7ffff7ea28bf <+79>:  cmpq   $-0x1000, %rax            ; imm = 0xF000 
+    0x7ffff7ea28c5 <+85>:  ja     0x7ffff7ea28f8            ; <+136> [inlined] __GI___libc_write at write.c:26:10
+    0x7ffff7ea28c7 <+87>:  movl   %r8d, %edi
+    0x7ffff7ea28ca <+90>:  movq   %rax, 0x8(%rsp)
+    0x7ffff7ea28cf <+95>:  callq  0x7ffff7e1ea60            ; __GI___pthread_disable_asynccancel at cancellation.c:56:1
+    0x7ffff7ea28d4 <+100>: movq   0x8(%rsp), %rax
+    0x7ffff7ea28d9 <+105>: addq   $0x28, %rsp
+    0x7ffff7ea28dd <+109>: retq   
+    0x7ffff7ea28de <+110>: nop    
+    0x7ffff7ea28e0 <+112>: movq   0x105529(%rip), %rdx
+    0x7ffff7ea28e7 <+119>: negl   %eax
+    0x7ffff7ea28e9 <+121>: movl   %eax, %fs:(%rdx)
+    0x7ffff7ea28ec <+124>: movq   $-0x1, %rax
+    0x7ffff7ea28f3 <+131>: retq   
+    0x7ffff7ea28f4 <+132>: nopl   (%rax)
+    0x7ffff7ea28f8 <+136>: movq   0x105511(%rip), %rdx
+    0x7ffff7ea28ff <+143>: negl   %eax
+    0x7ffff7ea2901 <+145>: movl   %eax, %fs:(%rdx)
+    0x7ffff7ea2904 <+148>: movq   $-0x1, %rax
+    0x7ffff7ea290b <+155>: jmp    0x7ffff7ea28c7            ; <+87> [inlined] __GI___libc_write + 37 at write.c:26:10
+(lldb) 

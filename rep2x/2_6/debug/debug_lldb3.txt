@@ -1,0 +1,53 @@
+(lldb) run 
+Process 29 launched: '/workplace/ls-laR/ls_laR' (x86_64)
+1 location added to breakpoint 1
+Process 29 stopped
+* thread #1, name = 'ls_laR', stop reason = breakpoint 1.1
+    frame #0: 0x00007ffff7ea2870 libc.so.6`__GI___libc_write(fd=1, buf=0x0000555555561340, nbytes=3) at write.c:25:1
+
+//lldbにはframe upがないらしい...
+
+(lldb) frame select 1
+frame #1: 0x00007ffff7e18eed libc.so.6`_IO_new_file_write(f=0x00007ffff7fa9780, data=0x0000555555561340, n=3) at fileops.c:1180:9
+(lldb) disassemble --name write
+libc.so.6`:
+    0x7ffff7ea2870 <+0>:   endbr64 
+    0x7ffff7ea2874 <+4>:   movl   %fs:0x18, %eax
+    0x7ffff7ea287c <+12>:  testl  %eax, %eax
+    0x7ffff7ea287e <+14>:  jne    0x7ffff7ea2890            ; <+32> at write.c:25:1
+    0x7ffff7ea2880 <+16>:  movl   $0x1, %eax
+    0x7ffff7ea2885 <+21>:  syscall 
+    0x7ffff7ea2887 <+23>:  cmpq   $-0x1000, %rax            ; imm = 0xF000 
+    0x7ffff7ea288d <+29>:  ja     0x7ffff7ea28e0            ; <+112> at write.c:26:10
+    0x7ffff7ea288f <+31>:  retq   
+    0x7ffff7ea2890 <+32>:  subq   $0x28, %rsp
+    0x7ffff7ea2894 <+36>:  movq   %rdx, 0x18(%rsp)
+    0x7ffff7ea2899 <+41>:  movq   %rsi, 0x10(%rsp)
+    0x7ffff7ea289e <+46>:  movl   %edi, 0x8(%rsp)
+    0x7ffff7ea28a2 <+50>:  callq  0x7ffff7e1e9f0            ; __GI___pthread_enable_asynccancel at cancellation.c:31:1
+    0x7ffff7ea28a7 <+55>:  movq   0x18(%rsp), %rdx
+    0x7ffff7ea28ac <+60>:  movq   0x10(%rsp), %rsi
+    0x7ffff7ea28b1 <+65>:  movl   %eax, %r8d
+    0x7ffff7ea28b4 <+68>:  movl   0x8(%rsp), %edi
+    0x7ffff7ea28b8 <+72>:  movl   $0x1, %eax
+    0x7ffff7ea28bd <+77>:  syscall 
+    0x7ffff7ea28bf <+79>:  cmpq   $-0x1000, %rax            ; imm = 0xF000 
+    0x7ffff7ea28c5 <+85>:  ja     0x7ffff7ea28f8            ; <+136> [inlined] __GI___libc_write at write.c:26:10
+    0x7ffff7ea28c7 <+87>:  movl   %r8d, %edi
+    0x7ffff7ea28ca <+90>:  movq   %rax, 0x8(%rsp)
+    0x7ffff7ea28cf <+95>:  callq  0x7ffff7e1ea60            ; __GI___pthread_disable_asynccancel at cancellation.c:56:1
+    0x7ffff7ea28d4 <+100>: movq   0x8(%rsp), %rax
+    0x7ffff7ea28d9 <+105>: addq   $0x28, %rsp
+    0x7ffff7ea28dd <+109>: retq   
+    0x7ffff7ea28de <+110>: nop    
+    0x7ffff7ea28e0 <+112>: movq   0x105529(%rip), %rdx
+    0x7ffff7ea28e7 <+119>: negl   %eax
+    0x7ffff7ea28e9 <+121>: movl   %eax, %fs:(%rdx)
+    0x7ffff7ea28ec <+124>: movq   $-0x1, %rax
+    0x7ffff7ea28f3 <+131>: retq   
+    0x7ffff7ea28f4 <+132>: nopl   (%rax)
+    0x7ffff7ea28f8 <+136>: movq   0x105511(%rip), %rdx
+    0x7ffff7ea28ff <+143>: negl   %eax
+    0x7ffff7ea2901 <+145>: movl   %eax, %fs:(%rdx)
+    0x7ffff7ea2904 <+148>: movq   $-0x1, %rax
+    0x7ffff7ea290b <+155>: jmp    0x7ffff7ea28c7            ; <+87> [inlined] __GI___libc_write + 37 at write.c:26:10

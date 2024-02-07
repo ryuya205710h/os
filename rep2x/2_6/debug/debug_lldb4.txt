@@ -1,0 +1,7 @@
+(lldb) breakpoint modify -i 9
+(lldb) 
+(lldb) breakpoint list
+Current breakpoints:
+1: name = 'write', locations = 1, resolved = 1, hit count = 1 Options: ignore: 9 enabled 
+  1.1: where = libc.so.6`__GI___libc_write at write.c:25:1, address = 0x00007ffff7ea2870, resolved, hit count = 1 
+
