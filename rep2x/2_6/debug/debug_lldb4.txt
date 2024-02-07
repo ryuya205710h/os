@@ -1,3 +1,5 @@
+//多様な値は得られてないため、グラフにはしていない
+
 (lldb) breakpoint set --file main.c --line 24
 Breakpoint 1: where = ls_laR`print_directory_contents + 213 at main.c:24:6, address = 0x000000000000143e
 (lldb) run 1
